@@ -160,6 +160,27 @@ namespace Splat.Tests.ServiceLocation
         }
 
         /// <summary>
+        /// Nulls the resolver tests.
+        /// </summary>
+        [Fact]
+        public void NullResolverTests()
+        {
+            IReadonlyDependencyResolver resolver = default;
+            IMutableDependencyResolver resolver1 = default;
+            IDependencyResolver resolver2 = default;
+            Assert.Throws<ArgumentNullException>(() => resolver.GetService<ILogManager>());
+            Assert.Throws<ArgumentNullException>(() => resolver.GetServices<ILogManager>());
+            Assert.Throws<ArgumentNullException>(() => resolver1.ServiceRegistrationCallback(typeof(ILogManager), (IDisposable d) => { d.Dispose(); }));
+            Assert.Throws<ArgumentNullException>(() => resolver2.WithResolver().Dispose());
+            Assert.Throws<ArgumentNullException>(() => resolver1.Register<ILogManager>(() => new DefaultLogManager()));
+            Assert.Throws<ArgumentNullException>(() => resolver1.RegisterConstant<ILogManager>(new DefaultLogManager()));
+            Assert.Throws<ArgumentNullException>(() => resolver1.RegisterLazySingleton(() => new DefaultLogManager(), typeof(ILogManager)));
+            Assert.Throws<ArgumentNullException>(() => resolver1.RegisterLazySingleton(() => new DefaultLogManager()));
+            Assert.Throws<ArgumentNullException>(() => resolver1.UnregisterCurrent<ILogManager>());
+            Assert.Throws<ArgumentNullException>(() => resolver1.UnregisterAll<ILogManager>());
+        }
+
+        /// <summary>
         /// Gets an instance of a dependency resolver to test.
         /// </summary>
         /// <returns>Dependency Resolver.</returns>

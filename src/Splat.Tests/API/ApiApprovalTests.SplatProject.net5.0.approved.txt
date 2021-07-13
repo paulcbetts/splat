@@ -163,6 +163,8 @@ namespace Splat
         public static System.Collections.Generic.IEnumerable<T> GetServices<T>(this Splat.IReadonlyDependencyResolver resolver, string? contract = null) { }
         public static void Register<T>(this Splat.IMutableDependencyResolver resolver, System.Func<T> factory, string? contract = null)
             where T :  notnull { }
+        public static void Register<TAs, T>(this Splat.IMutableDependencyResolver resolver, string? contract = null)
+            where T : new() { }
         public static void RegisterConstant(this Splat.IMutableDependencyResolver resolver, object value, System.Type serviceType, string? contract = null) { }
         public static void RegisterConstant<T>(this Splat.IMutableDependencyResolver resolver, T value, string? contract = null)
             where T :  notnull { }
@@ -567,6 +569,23 @@ namespace Splat
         public static System.Tuple<System.Drawing.RectangleF, System.Drawing.RectangleF> Divide(this System.Drawing.RectangleF value, float amount, Splat.RectEdge fromEdge) { }
         public static System.Tuple<System.Drawing.RectangleF, System.Drawing.RectangleF> DivideWithPadding(this System.Drawing.RectangleF value, float sliceAmount, float padding, Splat.RectEdge fromEdge) { }
         public static System.Drawing.RectangleF InvertWithin(this System.Drawing.RectangleF value, System.Drawing.RectangleF containingRect) { }
+    }
+    public static class ResolverMixins
+    {
+        public static Splat.IMutableDependencyResolver RegisterAnd<T>(this Splat.IMutableDependencyResolver resolver, string? contract = null)
+            where T : new() { }
+        public static Splat.IMutableDependencyResolver RegisterAnd<T>(this Splat.IMutableDependencyResolver resolver, System.Func<T> factory, string? contract = null) { }
+        public static Splat.IMutableDependencyResolver RegisterAnd<TAs, T>(this Splat.IMutableDependencyResolver resolver, string? contract = null)
+            where T : new() { }
+        public static Splat.IMutableDependencyResolver RegisterAnd<TAs, T>(this Splat.IMutableDependencyResolver resolver, System.Func<T> factory, string? contract = null) { }
+        public static Splat.IMutableDependencyResolver RegisterConstantAnd(this Splat.IMutableDependencyResolver resolver, object value, System.Type serviceType, string? contract = null) { }
+        public static Splat.IMutableDependencyResolver RegisterConstantAnd<T>(this Splat.IMutableDependencyResolver resolver, string? contract = null)
+            where T : new() { }
+        public static Splat.IMutableDependencyResolver RegisterConstantAnd<T>(this Splat.IMutableDependencyResolver resolver, T value, string? contract = null) { }
+        public static Splat.IMutableDependencyResolver RegisterLazySingletonAnd(this Splat.IMutableDependencyResolver resolver, System.Func<object> valueFactory, System.Type serviceType, string? contract = null) { }
+        public static Splat.IMutableDependencyResolver RegisterLazySingletonAnd<T>(this Splat.IMutableDependencyResolver resolver, string? contract = null)
+            where T : new() { }
+        public static Splat.IMutableDependencyResolver RegisterLazySingletonAnd<T>(this Splat.IMutableDependencyResolver resolver, System.Func<T> valueFactory, string? contract = null) { }
     }
     public static class ServiceLocationInitialization
     {

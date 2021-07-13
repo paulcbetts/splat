@@ -116,6 +116,24 @@ namespace Splat
         }
 
         /// <summary>
+        /// Registers a factory for the given <typeparamref name="T" />.
+        /// </summary>
+        /// <typeparam name="TAs">The type to register as.</typeparam>
+        /// <typeparam name="T">The service type to register for.</typeparam>
+        /// <param name="resolver">The resolver to register the service type with.</param>
+        /// <param name="contract">A optional contract value which will indicates to only generate the value if this contract is specified.</param>
+        public static void Register<TAs, T>(this IMutableDependencyResolver resolver, string? contract = null)
+            where T : new()
+        {
+            if (resolver is null)
+            {
+                throw new ArgumentNullException(nameof(resolver));
+            }
+
+            resolver.Register(() => new T(), typeof(TAs), contract);
+        }
+
+        /// <summary>
         /// Registers a constant value which will always return the specified object instance.
         /// </summary>
         /// <param name="resolver">The resolver to register the service type with.</param>
