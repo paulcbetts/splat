@@ -20,7 +20,7 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Write_Should_Emit_Message()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
 
             var logger = new ActionLogger(
@@ -29,9 +29,9 @@ namespace Splat.Tests.Logging
                     passedMessage = message;
                     passedLevel = level;
                 },
-                null,
-                null,
-                null);
+                null!,
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -47,20 +47,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Debug_With_Generic_Type_Should_Emit_Message_And_Type()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -77,20 +77,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Debug_With_Generic_Type_Should_Emit_Message_And_Type_Provided()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -107,20 +107,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Info_With_Generic_Type_Should_Emit_Message_And_Type()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -137,20 +137,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Info_With_Generic_Type_Should_Emit_Message_And_Type_Provided()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -167,20 +167,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Warn_With_Generic_Type_Should_Emit_Message_And_Type()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -197,20 +197,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Warn_With_Generic_Type_Should_Emit_Message_And_Type_Provided()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -227,20 +227,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Error_With_Generic_Type_Should_Emit_Message_And_Type()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -257,20 +257,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Error_With_Generic_Type_Should_Emit_Message_And_Type_Provided()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -287,20 +287,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Fatal_With_Generic_Type_Should_Emit_Message_And_Type()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 
@@ -317,20 +317,20 @@ namespace Splat.Tests.Logging
         [Fact]
         public void Fatal_With_Generic_Type_Should_Emit_Message_And_Type_Provided()
         {
-            string passedMessage = null;
+            string? passedMessage = null;
             LogLevel? passedLevel = null;
-            Type passedType = null;
+            Type? passedType = null;
 
             var logger = new ActionLogger(
-                null,
+                null!,
                 (message, type, level) =>
                 {
                     passedMessage = message;
                     passedType = type;
                     passedLevel = level;
                 },
-                null,
-                null);
+                null!,
+                null!);
 
             var fullLogger = new WrappingFullLogger(logger);
 

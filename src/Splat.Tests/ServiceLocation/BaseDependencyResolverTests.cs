@@ -151,12 +151,21 @@ namespace Splat.Tests.ServiceLocation
         {
             var resolver = GetDependencyResolver();
 
-            // Setup NLog for Logging (doesn't matter if I actually configure NLog or not)
-            resolver.UseNLogWithWrappingFullLogger();
+            // NOTE:MicrosoftDependencyResolver test for this funtionality is in DependencyResolverTests
+            if (resolver.GetType().Name != "MicrosoftDependencyResolver")
+            {
+                // Setup NLog for Logging (doesn't matter if I actually configure NLog or not)
+                resolver.UseNLogWithWrappingFullLogger();
+                Locator.SetLocator(resolver);
+                Locator.CurrentMutable.InitializeSplat();
 
-            // Get the ILogManager instance (this should succeed, but fails in current code)
-            ILogManager lm = Locator.Current.GetService<ILogManager>();
-            Assert.NotNull(lm);
+                // Get the ILogManager instance
+                var lm = Locator.Current.GetService<ILogManager>();
+
+                // now suceeds for AutoFac, Ninject and Splat
+                var mgr = lm.GetLogger<NLogLogger>();
+                Assert.NotNull(mgr);
+            }
         }
 
         /// <summary>

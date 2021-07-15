@@ -71,9 +71,9 @@ namespace Splat.Tests.ApplicationPerformanceMonitoring
 
                 var genericSubfeature = subfeature as IFeatureUsageTrackingSession<Guid>;
                 Assert.NotNull(genericSubfeature);
-                Assert.Equal(subfeatureName, genericSubfeature.FeatureName);
-                Assert.NotEqual(Guid.Empty, genericSubfeature.FeatureReference);
-                Assert.Equal(instance.FeatureReference, genericSubfeature.ParentReference);
+                Assert.Equal(subfeatureName, genericSubfeature?.FeatureName);
+                Assert.NotEqual(Guid.Empty, genericSubfeature?.FeatureReference);
+                Assert.Equal(instance.FeatureReference, genericSubfeature?.ParentReference);
             }
 
             /// <summary>

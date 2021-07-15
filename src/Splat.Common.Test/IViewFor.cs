@@ -6,17 +6,19 @@
 namespace Splat.Common.Test
 {
 #pragma warning disable SA1402 // File may only contain a single type
+
     /// <summary>
     /// Represents a view bound to a view model.
     /// </summary>
     /// <typeparam name="T">The view model type.</typeparam>
     /// <seealso cref="Splat.Common.Test.IViewFor" />
     public interface IViewFor<T> : IViewFor
+        where T : class
     {
         /// <summary>
         /// Gets or sets the view model.
         /// </summary>
-        new T ViewModel { get; set; }
+        new T? ViewModel { get; set; }
     }
 
     /// <summary>
@@ -28,7 +30,8 @@ namespace Splat.Common.Test
         /// <summary>
         /// Gets or sets the view model.
         /// </summary>
-        object ViewModel { get; set; }
+        object? ViewModel { get; set; }
     }
+
 #pragma warning restore SA1402 // File may only contain a single type
 }

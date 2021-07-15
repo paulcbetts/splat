@@ -30,7 +30,7 @@ namespace Splat
         /// <param name="factory">The factory function which generates our object.</param>
         /// <param name="serviceType">The type which is used for the registration.</param>
         /// <param name="contract">A optional contract value which will indicates to only generate the value if this contract is specified.</param>
-        void Register(Func<object> factory, Type serviceType, string? contract = null);
+        void Register(Func<object?> factory, Type serviceType, string? contract = null);
 
         /// <summary>
         /// Unregisters the current item based on the specified type and contract.

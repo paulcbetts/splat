@@ -27,19 +27,19 @@ namespace Splat.Tests.Logging
         private static readonly Dictionary<Level, LogLevel> _log4Net2Splat = new()
         {
             { Level.Debug, LogLevel.Debug },
-            { Level.Info,  LogLevel.Info },
-            { Level.Warn,  LogLevel.Warn },
+            { Level.Info, LogLevel.Info },
+            { Level.Warn, LogLevel.Warn },
             { Level.Error, LogLevel.Error },
             { Level.Fatal, LogLevel.Fatal },
         };
 
         private static readonly Dictionary<LogLevel, Level> _splat2log4net = new()
         {
-            { LogLevel.Debug,  Level.Debug },
-            { LogLevel.Info,   Level.Info },
-            { LogLevel.Warn,   Level.Warn },
-            { LogLevel.Error,  Level.Error },
-            { LogLevel.Fatal,  Level.Fatal },
+            { LogLevel.Debug, Level.Debug },
+            { LogLevel.Info, Level.Info },
+            { LogLevel.Warn, Level.Warn },
+            { LogLevel.Error, Level.Error },
+            { LogLevel.Fatal, Level.Fatal },
         };
 
         /// <inheritdoc/>
@@ -106,7 +106,7 @@ namespace Splat.Tests.Logging
                             return (currentLevel, $"{x.MessageObject} {x.ExceptionObject}");
                         }
 
-                        return (currentLevel, x.MessageObject.ToString());
+                        return (currentLevel, x.MessageObject.ToString()!);
                     }).ToList();
                 }
             }

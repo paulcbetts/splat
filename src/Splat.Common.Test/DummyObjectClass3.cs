@@ -6,9 +6,9 @@
 namespace Splat.Tests.Mocks
 {
     /// <summary>
-    /// A dummy interface used during Locator testing.
+    /// A dummy class used during Locator testing.
     /// </summary>
-    internal interface IDummyInterface
+    public class DummyObjectClass3 : IDummyInterface
     {
     }
 }

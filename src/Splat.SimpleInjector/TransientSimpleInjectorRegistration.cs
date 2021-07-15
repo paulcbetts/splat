@@ -11,8 +11,8 @@ namespace Splat.SimpleInjector
 {
     internal class TransientSimpleInjectorRegistration : Registration
     {
-        public TransientSimpleInjectorRegistration(Container container, Type implementationType, Func<object>? instanceCreator = null)
-            : base(Lifestyle.Transient, container, implementationType, instanceCreator)
+        public TransientSimpleInjectorRegistration(Container container, Type implementationType, Func<object?>? instanceCreator = null)
+            : base(Lifestyle.Transient, container, implementationType, instanceCreator!)
         {
         }
 

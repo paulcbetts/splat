@@ -34,14 +34,14 @@ namespace Splat.Tests
         /// <param name="assembly">The assembly that is being checked.</param>
         /// <param name="memberName">The caller member.</param>
         /// <param name="filePath">The caller file path.</param>
-        public static void CheckApproval(this Assembly assembly, [CallerMemberName] string memberName = null, [CallerFilePath] string filePath = null)
+        public static void CheckApproval(this Assembly assembly, [CallerMemberName] string? memberName = null, [CallerFilePath] string? filePath = null)
         {
             var targetFrameworkName = Assembly.GetExecutingAssembly().GetTargetFrameworkName();
 
             var sourceDirectory = Path.GetDirectoryName(filePath);
 
-            var approvedFileName = Path.Combine(sourceDirectory, $"ApiApprovalTests.{memberName}.{targetFrameworkName}.approved.txt");
-            var receivedFileName = Path.Combine(sourceDirectory, $"ApiApprovalTests.{memberName}.{targetFrameworkName}.received.txt");
+            var approvedFileName = Path.Combine(sourceDirectory!, $"ApiApprovalTests.{memberName}.{targetFrameworkName}.approved.txt");
+            var receivedFileName = Path.Combine(sourceDirectory!, $"ApiApprovalTests.{memberName}.{targetFrameworkName}.received.txt");
 
             string approvedPublicApi = string.Empty;
 

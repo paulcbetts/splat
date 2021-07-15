@@ -35,9 +35,9 @@ namespace Splat.Tests.Logging
 
             public ICollection<(LogLevel logLevel, string message)> Logs => _logs;
 
-            public override void WriteLine(string value)
+            public override void WriteLine(string? value)
             {
-                var colonIndex = value.IndexOf(":", StringComparison.InvariantCulture);
+                var colonIndex = value!.IndexOf(":", StringComparison.InvariantCulture);
                 var level = (LogLevel)Enum.Parse(typeof(LogLevel), value.Substring(0, colonIndex));
                 var message = value.Substring(colonIndex + 1).Trim();
                 _logs.Add((level, message));

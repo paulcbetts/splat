@@ -22,7 +22,7 @@ namespace Splat.Tests
         public void ThrowsArgumentNullException()
         {
             var instance = GetTestInstance();
-            Assert.Throws<ArgumentNullException>(() => instance.Get(null));
+            Assert.Throws<ArgumentNullException>(() => instance.Get(null!));
         }
 
         /// <summary>

@@ -15,7 +15,6 @@ namespace Splat.Prism
     /// <summary>
     /// A container for the Prism application.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1316:Tuple element names should use correct casing", Justification = "Match Prism naming scheme.")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Analyzers", "CA1065: Don't throw exceptions from properties", Justification = "Deliberate usage")]
     public class SplatContainerExtension : IContainerExtension<IDependencyResolver>, IDisposable
     {
@@ -253,7 +252,7 @@ namespace Splat.Prism
                 return Activator.CreateInstance(resolvedType, parameters.Select(x => x.Instance)) ?? throw new InvalidOperationException("Could not create type");
             }
 
-            return null;
+            return default;
         }
 
         /// <inheritdoc/>
@@ -269,13 +268,13 @@ namespace Splat.Prism
             {
                 if (resolvedType is null)
                 {
-                    return null;
+                    return default;
                 }
 
-                return Activator.CreateInstance(resolvedType, parameters.Select(x => x.Instance));
+                return Activator.CreateInstance(resolvedType, parameters.Select(x => x.Instance))!;
             }
 
-            return null;
+            return default;
         }
 
         /// <summary>

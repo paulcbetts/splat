@@ -10,7 +10,7 @@ using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
 using Splat.Common.Test;
-
+using Splat.NLog;
 using Xunit;
 
 namespace Splat.Microsoft.Extensions.DependencyInjection.Tests
@@ -146,6 +146,29 @@ namespace Splat.Microsoft.Extensions.DependencyInjection.Tests
             var result = Record.Exception(() => Locator.CurrentMutable.Register(() => new ViewOne()));
 
             result.Should().BeOfType<InvalidOperationException>();
+        }
+
+        /// <summary>
+        /// Tests to ensure NLog registers correctly with different service locators.
+        /// Based on issue reported in #553.
+        /// </summary>
+        [Fact]
+        public void ILogManager_Resolvable()
+        {
+            var wrapper = new ContainerWrapper();
+            var services = wrapper.ServiceCollection;
+
+            // Setup NLog for Logging (doesn't matter if I actually configure NLog or not)
+            var funcLogManager = new FuncLogManager(type => new NLogLogger(LogResolver.Resolve(type)));
+            services.AddSingleton<ILogManager>(funcLogManager);
+
+            wrapper.BuildAndUse();
+
+            // Get the ILogManager instance.
+            ILogManager lm = Locator.Current.GetService<ILogManager>();
+
+            var mgr = lm.GetLogger<NLogLogger>();
+            Assert.NotNull(mgr);
         }
     }
 }

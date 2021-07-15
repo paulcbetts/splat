@@ -29,6 +29,6 @@ namespace Splat
         /// <param name="contract">A optional value which will retrieve only objects registered with the same contract.</param>
         /// <returns>A sequence of instances of the requested <paramref name="serviceType"/>. The sequence
         /// should be empty (not <c>null</c>) if no objects of the given type are available.</returns>
-        IEnumerable<object> GetServices(Type serviceType, string? contract = null);
+        IEnumerable<object?> GetServices(Type serviceType, string? contract = null);
     }
 }

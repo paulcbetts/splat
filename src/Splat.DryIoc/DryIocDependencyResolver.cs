@@ -35,7 +35,7 @@ namespace Splat.DryIoc
                 : _container.ResolveMany(serviceType, serviceKey: contract).LastOrDefault();
 
         /// <inheritdoc />
-        public virtual IEnumerable<object> GetServices(Type serviceType, string? contract = null) =>
+        public virtual IEnumerable<object?> GetServices(Type serviceType, string? contract = null) =>
             string.IsNullOrEmpty(contract)
                 ? _container.ResolveMany(serviceType)
                 : _container.ResolveMany(serviceType, serviceKey: contract);
@@ -61,7 +61,7 @@ namespace Splat.DryIoc
         }
 
         /// <inheritdoc />
-        public virtual void Register(Func<object> factory, Type serviceType, string? contract = null)
+        public virtual void Register(Func<object?> factory, Type serviceType, string? contract = null)
         {
             if (factory is null)
             {

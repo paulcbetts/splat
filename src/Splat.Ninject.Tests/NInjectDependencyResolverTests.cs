@@ -22,16 +22,16 @@ namespace Splat.Ninject.Tests
         {
             var resolver = GetDependencyResolver();
             var foo = 5;
-            resolver.Register(() => foo, null);
+            resolver.Register(() => foo, null!);
 
-            var value = resolver.GetService(null);
+            var value = resolver.GetService(null!);
             Assert.Equal(foo, value);
 
             var bar = 4;
             var contract = "foo";
-            resolver.Register(() => bar, null, contract);
+            resolver.Register(() => bar, null!, contract);
 
-            value = resolver.GetService(null, contract);
+            value = resolver.GetService(null!, contract);
             Assert.Equal(bar, value);
         }
 

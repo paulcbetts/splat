@@ -83,7 +83,7 @@ namespace Splat.Autofac
         }
 
         /// <inheritdoc />
-        public virtual IEnumerable<object> GetServices(Type serviceType, string? contract = null)
+        public virtual IEnumerable<object?> GetServices(Type serviceType, string? contract = null)
         {
             lock (_lockObject)
             {
@@ -94,14 +94,14 @@ namespace Splat.Autofac
 
                     if (instance is null)
                     {
-                        return Array.Empty<object>();
+                        return Array.Empty<object?>();
                     }
 
-                    return ((IEnumerable)instance).Cast<object>();
+                    return ((IEnumerable)instance).Cast<object?>();
                 }
                 catch (DependencyResolutionException)
                 {
-                    return Array.Empty<object>();
+                    return Array.Empty<object?>();
                 }
             }
         }
@@ -126,14 +126,14 @@ namespace Splat.Autofac
         ///     Register a function with the resolver which will generate a object
         ///     for the specified service type.
         ///     Optionally a contract can be registered which will indicate
-        ///     that that registration will only work with that contract.
+        ///     that registration will only work with that contract.
         ///     Most implementations will use a stack based approach to allow for multiple items to be registered.
         /// </summary>
         /// <param name="factory">The factory function which generates our object.</param>
         /// <param name="serviceType">The type which is used for the registration.</param>
         /// <param name="contract">A optional contract value which will indicates to only generate the value if this contract is specified.</param>
         [Obsolete("Because Autofac 5+ containers are immutable, this method should not be used by the end-user.")]
-        public virtual void Register(Func<object> factory, Type serviceType, string? contract = null)
+        public virtual void Register(Func<object?> factory, Type serviceType, string? contract = null)
         {
             lock (_lockObject)
             {
@@ -147,21 +147,21 @@ namespace Splat.Autofac
                 // Second to child lifetimes in a temporary container, that is used only to satisfy ReactiveUI dependencies.
                 if (contract is null || string.IsNullOrWhiteSpace(contract))
                 {
-                    _builder.Register(_ => factory())
+                    _builder.Register(_ => factory()!)
                         .As(serviceType)
                         .AsImplementedInterfaces();
                     _internalLifetimeScope = _internalLifetimeScope.BeginLifetimeScope(internalBuilder =>
-                        internalBuilder.Register(_ => factory())
+                        internalBuilder.Register(_ => factory()!)
                             .As(serviceType)
                             .AsImplementedInterfaces());
                 }
                 else
                 {
-                    _builder.Register(_ => factory())
+                    _builder.Register(_ => factory()!)
                         .Named(contract, serviceType)
                         .AsImplementedInterfaces();
                     _internalLifetimeScope = _internalLifetimeScope.BeginLifetimeScope(internalBuilder =>
-                        internalBuilder.Register(_ => factory())
+                        internalBuilder.Register(_ => factory()!)
                             .Named(contract, serviceType)
                             .AsImplementedInterfaces());
                 }
@@ -225,19 +225,19 @@ namespace Splat.Autofac
             }
         }
 
-        private object? Resolve(Type serviceType, string? contract)
+        private object Resolve(Type serviceType, string? contract)
         {
-            object? serviceInstance;
+            object serviceInstance;
 
             var lifeTimeScope = _lifetimeScope ?? _internalLifetimeScope;
 
             if (contract is null || string.IsNullOrWhiteSpace(contract))
             {
-                lifeTimeScope.TryResolve(serviceType, out serviceInstance);
+                lifeTimeScope.TryResolve(serviceType, out serviceInstance!);
             }
             else
             {
-                lifeTimeScope.TryResolveNamed(contract, serviceType, out serviceInstance);
+                lifeTimeScope.TryResolveNamed(contract, serviceType, out serviceInstance!);
             }
 
             return serviceInstance;

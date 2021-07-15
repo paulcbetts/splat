@@ -11,6 +11,7 @@ using System.Text;
 using Xunit;
 
 #if !NETSTANDARD2_0
+
 namespace Splat.Tests
 {
     /// <summary>
@@ -100,9 +101,10 @@ namespace Splat.Tests
             return Android.App.Application.Context.Assets.Open(imageName);
 #else
             var assembly = Assembly.GetExecutingAssembly();
-            return assembly.GetManifestResourceStream(imageName);
+            return assembly.GetManifestResourceStream(imageName)!;
 #endif
         }
     }
 }
+
 #endif

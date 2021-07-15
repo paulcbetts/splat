@@ -12,13 +12,13 @@ namespace Splat.Common.Test
     public class ViewTwo : IViewFor<ViewModelTwo>
     {
         /// <inheritdoc />
-        object IViewFor.ViewModel
+        object? IViewFor.ViewModel
         {
             get => ViewModel;
-            set => ViewModel = (ViewModelTwo)value;
+            set => ViewModel = (ViewModelTwo?)value;
         }
 
         /// <inheritdoc />
-        public ViewModelTwo ViewModel { get; set; }
+        public ViewModelTwo? ViewModel { get; set; }
     }
 }

@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
     <NoWarn>$(NoWarn);1591;CA1707;SA1633;CA2000;CA1034</NoWarn>
     <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT' ">

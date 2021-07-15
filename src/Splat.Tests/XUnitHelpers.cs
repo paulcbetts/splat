@@ -25,7 +25,7 @@ namespace Splat.Tests
             var results = new List<object[]>(values.Length);
             foreach (var value in values)
             {
-                results.Add(new[] { value });
+                results.Add(new[] { value! });
             }
 
             return results;

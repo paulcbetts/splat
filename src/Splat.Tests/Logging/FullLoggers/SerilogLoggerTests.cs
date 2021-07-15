@@ -30,25 +30,25 @@ namespace Splat.Tests.Logging
         /// Gets a list of mappings of Serilog levels and equivalent Splat log levels.
         /// </summary>
         private static readonly Dictionary<LogLevel, LogEventLevel> _mappingsToSerilog = new()
-            {
-                { LogLevel.Debug, LogEventLevel.Debug },
-                { LogLevel.Info, LogEventLevel.Information },
-                { LogLevel.Warn, LogEventLevel.Warning },
-                { LogLevel.Error, LogEventLevel.Error },
-                { LogLevel.Fatal, LogEventLevel.Fatal }
-            };
+        {
+            { LogLevel.Debug, LogEventLevel.Debug },
+            { LogLevel.Info, LogEventLevel.Information },
+            { LogLevel.Warn, LogEventLevel.Warning },
+            { LogLevel.Error, LogEventLevel.Error },
+            { LogLevel.Fatal, LogEventLevel.Fatal }
+        };
 
         /// <summary>
         /// Gets a list of mappings of Serilog levels and equivalent Splat log levels.
         /// </summary>
         private static readonly Dictionary<LogEventLevel, LogLevel> _mappingsToSplat = new()
-            {
-                { LogEventLevel.Debug, LogLevel.Debug },
-                { LogEventLevel.Information, LogLevel.Info },
-                { LogEventLevel.Warning, LogLevel.Warn },
-                { LogEventLevel.Error, LogLevel.Error },
-                { LogEventLevel.Fatal, LogLevel.Fatal }
-            };
+        {
+            { LogEventLevel.Debug, LogLevel.Debug },
+            { LogEventLevel.Information, LogLevel.Info },
+            { LogEventLevel.Warning, LogLevel.Warn },
+            { LogEventLevel.Error, LogLevel.Error },
+            { LogEventLevel.Fatal, LogLevel.Fatal }
+        };
 
         /// <summary>
         /// Test to make sure the calling `UseSerilogWithWrappingFullLogger` logs.
@@ -67,11 +67,11 @@ namespace Splat.Tests.Logging
 
                 Assert.Equal(0, target.Logs.Count);
 
-                IEnableLogger logger = null;
+                IEnableLogger logger = null!;
                 logger.Log().Debug<DummyObjectClass2>("This is a test.");
 
                 Assert.Equal(1, target.Logs.Count);
-                Assert.Equal("This is a test.", target.Logs.Last().message.Trim(NewLine).Trim());
+                Assert.Equal("This is a test.", target.Logs.Last().message!.Trim(NewLine).Trim());
             }
             finally
             {
@@ -94,12 +94,12 @@ namespace Splat.Tests.Logging
 
                 Assert.Equal(0, target.Logs.Count);
 
-                IEnableLogger logger = null;
+                IEnableLogger logger = null!;
 
                 logger.Log().Debug<DummyObjectClass2>("This is a test.");
 
                 Assert.Equal(1, target.Logs.Count);
-                Assert.Equal("This is a test.", target.Logs.Last().message.Trim(NewLine).Trim());
+                Assert.Equal("This is a test.", target.Logs.Last().message!.Trim(NewLine).Trim());
             }
             finally
             {

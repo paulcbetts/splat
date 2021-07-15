@@ -4,6 +4,8 @@
     <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     <NoWarn>$(NoWarn);1591;CA1707;SA1633;CA2000;CA1034</NoWarn>
     <LangVersion>latest</LangVersion>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Splat.ApplicationInsights\Splat.ApplicationInsights.csproj" />
+    <ProjectReference Include="..\Splat.Common.Test\Splat.Common.Test.csproj" />
     <ProjectReference Include="..\Splat.Exceptionless\Splat.Exceptionless.csproj" />
     <ProjectReference Include="..\Splat.AppCenter\Splat.AppCenter.csproj" />
     <ProjectReference Include="..\Splat.Log4Net\Splat.Log4Net.csproj" />

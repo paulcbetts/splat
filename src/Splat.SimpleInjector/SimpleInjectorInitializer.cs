@@ -20,7 +20,7 @@ namespace Splat.SimpleInjector
         /// <summary>
         /// Gets dictionary of registered factories.
         /// </summary>
-        public Dictionary<Type, List<Func<object>>> RegisteredFactories { get; }
+        public Dictionary<Type, List<Func<object?>>> RegisteredFactories { get; }
             = new();
 
         /// <inheritdoc />
@@ -28,18 +28,18 @@ namespace Splat.SimpleInjector
         {
             lock (_lockObject)
             {
-                Func<object>? fact = RegisteredFactories[serviceType].LastOrDefault();
-                return fact?.Invoke();
+                Func<object?>? fact = RegisteredFactories[serviceType].LastOrDefault();
+                return fact?.Invoke()!;
             }
         }
 
         /// <inheritdoc/>
-        public IEnumerable<object> GetServices(Type serviceType, string? contract = null)
+        public IEnumerable<object?> GetServices(Type serviceType, string? contract = null)
         {
             lock (_lockObject)
             {
                 return RegisteredFactories[serviceType]
-                    .Select(n => n());
+                    .Select(n => n()!);
             }
         }
 
@@ -54,13 +54,13 @@ namespace Splat.SimpleInjector
         }
 
         /// <inheritdoc />
-        public void Register(Func<object> factory, Type serviceType, string? contract = null)
+        public void Register(Func<object?> factory, Type serviceType, string? contract = null)
         {
             lock (_lockObject)
             {
                 if (!RegisteredFactories.ContainsKey(serviceType))
                 {
-                    RegisteredFactories.Add(serviceType, new List<Func<object>>());
+                    RegisteredFactories.Add(serviceType, new List<Func<object?>>());
                 }
 
                 RegisteredFactories[serviceType].Add(factory);
@@ -92,12 +92,10 @@ namespace Splat.SimpleInjector
         }
 
         /// <inheritdoc />
-#pragma warning disable CA1063 // Implement IDisposable Correctly
         public void Dispose()
-#pragma warning restore CA1063 // Implement IDisposable Correctly
         {
-            GC.SuppressFinalize(this);
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

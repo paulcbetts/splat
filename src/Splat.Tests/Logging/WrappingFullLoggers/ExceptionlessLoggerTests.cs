@@ -25,19 +25,19 @@ namespace Splat.Tests.Logging.WrappingFullLoggers
         private static readonly Dictionary<global::Exceptionless.Logging.LogLevel, LogLevel> _exceptionless2Splat = new()
         {
             { global::Exceptionless.Logging.LogLevel.Debug, LogLevel.Debug },
-            { global::Exceptionless.Logging.LogLevel.Info,  LogLevel.Info },
-            { global::Exceptionless.Logging.LogLevel.Warn,  LogLevel.Warn },
+            { global::Exceptionless.Logging.LogLevel.Info, LogLevel.Info },
+            { global::Exceptionless.Logging.LogLevel.Warn, LogLevel.Warn },
             { global::Exceptionless.Logging.LogLevel.Error, LogLevel.Error },
             { global::Exceptionless.Logging.LogLevel.Fatal, LogLevel.Fatal },
         };
 
         private static readonly Dictionary<LogLevel, global::Exceptionless.Logging.LogLevel> _splat2Exceptionless = new()
         {
-            { LogLevel.Debug,  global::Exceptionless.Logging.LogLevel.Debug },
-            { LogLevel.Info,   global::Exceptionless.Logging.LogLevel.Info },
-            { LogLevel.Warn,   global::Exceptionless.Logging.LogLevel.Warn },
-            { LogLevel.Error,  global::Exceptionless.Logging.LogLevel.Error },
-            { LogLevel.Fatal,  global::Exceptionless.Logging.LogLevel.Fatal },
+            { LogLevel.Debug, global::Exceptionless.Logging.LogLevel.Debug },
+            { LogLevel.Info, global::Exceptionless.Logging.LogLevel.Info },
+            { LogLevel.Warn, global::Exceptionless.Logging.LogLevel.Warn },
+            { LogLevel.Error, global::Exceptionless.Logging.LogLevel.Error },
+            { LogLevel.Fatal, global::Exceptionless.Logging.LogLevel.Fatal },
         };
 
         /// <inheritdoc/>
@@ -71,7 +71,7 @@ namespace Splat.Tests.Logging.WrappingFullLoggers
 
             var level = obj.Event.Data.GetValueOrDefault(Event.KnownDataKeys.Level) as string;
 
-            var logLevel = global::Exceptionless.Logging.LogLevel.FromString(level);
+            var logLevel = global::Exceptionless.Logging.LogLevel.FromString(level!);
 
             var splatLogLevel = GetSplatLogLevel(logLevel);
             var exception = obj.ContextData.HasException() ? obj.ContextData.GetException() : null;

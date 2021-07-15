@@ -31,10 +31,10 @@ namespace Splat.Ninject
 
         /// <inheritdoc />
         public virtual object? GetService(Type serviceType, string? contract = null) =>
-            GetServices(serviceType, contract)?.LastOrDefault();
+            GetServices(serviceType, contract).LastOrDefault()!;
 
         /// <inheritdoc />
-        public virtual IEnumerable<object> GetServices(Type serviceType, string? contract = null)
+        public virtual IEnumerable<object?> GetServices(Type serviceType, string? contract = null)
         {
             var isNull = serviceType is null;
             if (isNull)
@@ -61,7 +61,7 @@ namespace Splat.Ninject
         }
 
         /// <inheritdoc />
-        public virtual void Register(Func<object> factory, Type serviceType, string? contract = null)
+        public virtual void Register(Func<object?> factory, Type serviceType, string? contract = null)
         {
             var isNull = serviceType is null;
 
@@ -170,12 +170,12 @@ namespace Splat.Ninject
         [SuppressMessage("Design", "CA1812: Uninitialized class.", Justification = "Used in reflection.")]
         private class NullServiceType
         {
-            public NullServiceType(Func<object> factory)
+            public NullServiceType(Func<object?> factory)
             {
                 Factory = factory;
             }
 
-            public Func<object> Factory { get; }
+            public Func<object?> Factory { get; }
         }
     }
 }
